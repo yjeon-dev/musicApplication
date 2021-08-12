@@ -1,0 +1,32 @@
+<div>
+  <h1>New Releases</h1>
+  <p>The following is a list of new releases. <br>
+    Click the album cover or artist name for more information</p>
+</div>
+<div class="content">
+  <div fxLayout="row wrap" fxLayout.xs="column">
+
+    <!-- Single "Responsive" Card-->
+    <div fxFlex [style.margin]="'20px'" *ngFor="let item of releases">
+      <mat-card [style.min-width]="'200px'">
+        <mat-card-header>
+          <mat-card-title>{{item.name}}</mat-card-title>
+          <mat-card-subtitle>New Release</mat-card-subtitle>
+        </mat-card-header>
+        <a [routerLink]="['/album/'+item.id]"><img mat-card-image class="album-cover" src={{item.images[0].url}}
+            alt="album art"></a>
+        <strong>Release Date: </strong>{{item.release_date}}<br />
+        <strong>Tracks: </strong>{{item.total_tracks}}<br /><br />
+        <mat-card-content *ngFor="let artist of item.artists">
+          <mat-chip-list aria-label="Artist selection">
+            <a [routerLink]="['/artist/'+artist.id]">
+              <mat-chip>{{artist.name}}</mat-chip>
+            </a>
+          </mat-chip-list>
+        </mat-card-content>
+      </mat-card>
+    </div>
+    <!-- -->
+
+  </div>
+</div>
